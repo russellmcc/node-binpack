@@ -1,6 +1,6 @@
 {
    "name": "binpack",
-   "version": "0.0.1",
+   "version": "0.0.2",
    "main": "binpack",
    "description": "Minimalist numeric binary packing utilities for node.js",
    "keywords": [
