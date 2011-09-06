@@ -25,4 +25,4 @@ Each `pack*` function takes a javascript number and outputs a node.js Buffer.
 
 Each `unpack*` function takes a node.js Buffer and outputs a javascript number.
 
-Both types of functions take an optional second argument.  If this argument is "big", the output is put in big endian format.  If the argument is "little", the output is put in little endian format.  If the argument is anything else or non-existent, we default to your machine's native encoding.  Passing "big" or "little" to the floating point pack/unpack functions results in undefined behavior.
+Both types of functions take an optional second argument.  If this argument is `"big"`, the output is put in big endian format.  If the argument is `"little"`, the output is put in little endian format.  If the argument is anything else or non-existent, we default to your machine's native encoding.  Passing `"big"` or `"little"` to the floating point `pack`/`unpack` functions results in undefined behavior.
