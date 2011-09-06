@@ -3,7 +3,7 @@
    "version": "0.0.3",
    "main": "binpack",
    "author": {
-    "name" : "Russell McClellan"
+    "name" : "Russell McClellan",
     "email": "russell.mcclellan@gmail.com",
     "url" : "http://www.ghostfact.com"
     },
