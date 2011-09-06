@@ -2,6 +2,8 @@
 
 _Minimalist numeric binary packing utilities for node.js_
 
+## What's all this?
+
 This is an intentionally simple binary packing/unpacking package for node.js for programmers who prefer to write most of their parsing code in javascript.  This exposes some common binary formats for numbers.
 
 see the included COPYING file for licensing.
@@ -26,3 +28,7 @@ Each `pack*` function takes a javascript number and outputs a node.js Buffer.
 Each `unpack*` function takes a node.js Buffer and outputs a javascript number.
 
 Both types of functions take an optional second argument.  If this argument is `"big"`, the output is put in big endian format.  If the argument is `"little"`, the output is put in little endian format.  If the argument is anything else or non-existent, we default to your machine's native encoding.
+
+## How is this different than the `binary` module on npm?
+
+It contains floating point values, and it has packing functions

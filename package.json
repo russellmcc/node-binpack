@@ -2,20 +2,16 @@
    "name": "binpack",
    "version": "0.0.3",
    "main": "binpack",
-   "author": "GhostFact <russell.mcclellan@gmail.com>",
+   "author": {
+    "name" : "Russell McClellan"
+    "email": "russell.mcclellan@gmail.com",
+    "url" : "http://www.ghostfact.com"
+    },
    "description": "Minimalist numeric binary packing utilities for node.js",
    "keywords": [
        "binary",
        "pack",
        "unpack"
-   ],
-   "maintainers": [
-       {
-           "name": "Russell McClellan",
-           "email": "russell.mcclellan@gmail.com",
-           "web": "http://www.ghostfact.com",
-           "twitter": "rmcclellan"
-       } 
    ],
    "repository":
        {
@@ -33,6 +29,7 @@
        "node": ">=0.3.0"
    },
    "scripts": {
-       "install": "node-waf configure build"
+       "install": "node-waf configure build",
+       "test" : "vows tests/*"
    }
 }
