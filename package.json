@@ -1,0 +1,38 @@
+{
+   "name": "binpack",
+   "version": "0.0.0",
+   "main": "binpack",
+   "description": "Minimalist numeric binary packing utilities for node.js",
+   "keywords": [
+       "binary",
+       "pack",
+       "unpack"
+   ],
+   "maintainers": [
+       {
+           "name": "Russell McClellan",
+           "email": "russell.mcclellan@gmail.com",
+           "web": "http://www.ghostfact.net",
+           "twitter": "rmcclellan"
+       } 
+   ],
+   "repositories": [
+       {
+           "type": "git",
+           "url": "http://github.com/ghostfact/node-binpack.git" 
+       } 
+   ],
+   "devDependencies" : [
+       "vows",
+       "coffee-script"
+   ],
+   "directories": {
+       "src": "src"
+   },
+   "engines": {
+       "node": ">=0.3.0"
+   },
+   "scripts": {
+       "install": "node-waf configure build"
+   }
+}
