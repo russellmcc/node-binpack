@@ -1,6 +1,6 @@
 {
    "name": "binpack",
-   "version": "0.0.3",
+   "version": "0.0.4",
    "main": "binpack",
    "author": {
        "name" : "Russell McClellan",
@@ -17,15 +17,15 @@
        "type": "git",
        "url": "http://github.com/ghostfact/node-binpack.git" 
    },
-   "devDependencies" : [
-       "vows",
-       "coffee-script"
-   ],
+   "devDependencies" : {
+       "vows" : "*",
+       "coffee-script" : "*"
+   },
    "directories": {
        "src": "src"
    },
    "engines": {
-       "node": ">=0.3.0"
+       "node": ">=0.6.0"
    },
    "scripts": {
        "install": "node-waf configure build",
