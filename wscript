@@ -8,6 +8,7 @@ def set_options(opt):
 def configure(conf):
   conf.check_tool("compiler_cxx")
   conf.check_tool("node_addon")
+  conf.env.set_variant("Release") 
 
 def build(bld):
   obj = bld.new_task_gen("cxx", "shlib", "node_addon")
@@ -19,5 +20,5 @@ def shutdown():
     if Options.commands['clean']:
         if exists('binpack.node'): unlink('binpack.node')
     else:
-        if exists('build/default/binpack.node') and not exists('binpack.node'):
-            symlink('build/default/binpack.node', 'binpack.node')
+        if exists('build/Release/binpack.node') and not exists('binpack.node'):
+            symlink('build/Release/binpack.node', 'binpack.node')
