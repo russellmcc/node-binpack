@@ -1,6 +1,6 @@
 {
    "name": "binpack",
-   "version": "0.0.6",
+   "version": "0.0.7",
    "main": "binpack",
    "author": {
        "name" : "Russell McClellan",

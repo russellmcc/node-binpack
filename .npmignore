@@ -1,4 +1,4 @@
-build
+build/
 binpack.node
 node_modules
 .lock-wscript
