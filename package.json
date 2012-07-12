@@ -1,6 +1,6 @@
 {
    "name": "binpack",
-   "version": "0.0.8",
+   "version": "0.0.12",
    "main": "binpack",
    "author": {
        "name" : "Russell McClellan",
@@ -17,10 +17,12 @@
        "type": "git",
        "url": "http://github.com/ghostfact/node-binpack.git" 
    },
+   "dependencies" : {
+       "bindings" : "*"
+   },
    "devDependencies" : {
        "vows" : "*",
-       "coffee-script" : "*",
-       "node-gyp" : "*"
+       "coffee-script" : "*"
    },
    "directories": {
        "src": "src"
@@ -29,7 +31,6 @@
        "node": ">=0.6.0"
    },
    "scripts": {
-       "install": "node-gyp configure build",
        "test" : "vows tests/*"
    }
 }

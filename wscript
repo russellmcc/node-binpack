@@ -15,10 +15,3 @@ def build(bld):
   obj = bld.new_task_gen("cxx", "shlib", "node_addon")
   obj.target = "binpack"
   obj.source = "src/binpack.cpp"
-  
-def shutdown():
-    if Options.commands['clean']:
-        if exists('binpack.node'): unlink('binpack.node')
-    else:
-        if exists('build/Release/binpack.node') and not exists('binpack.node'):
-            symlink('build/Release/binpack.node', 'binpack.node')
