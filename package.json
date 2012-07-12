@@ -1,6 +1,6 @@
 {
    "name": "binpack",
-   "version": "0.0.7",
+   "version": "0.0.8",
    "main": "binpack",
    "author": {
        "name" : "Russell McClellan",
@@ -19,7 +19,8 @@
    },
    "devDependencies" : {
        "vows" : "*",
-       "coffee-script" : "*"
+       "coffee-script" : "*",
+       "node-gyp" : "*"
    },
    "directories": {
        "src": "src"
@@ -28,7 +29,7 @@
        "node": ">=0.6.0"
    },
    "scripts": {
-       "install": "node-waf configure build",
+       "install": "node-gyp configure build",
        "test" : "vows tests/*"
    }
 }
