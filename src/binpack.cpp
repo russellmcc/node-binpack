@@ -45,7 +45,7 @@ bool IsPlatformLittleEndian()
 ByteOrder GetByteOrder(const Arguments& args)
 {
     // default to native.
-    if(not args.Length() > 1)
+    if(!(args.Length() > 1))
         return kNative;
         
     Local<Value> arg = args[1];
@@ -53,9 +53,9 @@ ByteOrder GetByteOrder(const Arguments& args)
     {
         char utf8[12];
         arg->ToString()->WriteUtf8(utf8, 10);
-        if(not std::strncmp(utf8, "big", 10))
+        if(!std::strncmp(utf8, "big", 10))
             return IsPlatformLittleEndian() ? kFlip : kNative;
-        if(not std::strncmp(utf8, "little", 10))
+        if(!std::strncmp(utf8, "little", 10))
             return IsPlatformLittleEndian() ? kNative : kFlip;
     }
     
@@ -70,7 +70,7 @@ Handle<Value> unpackBuffer(const Arguments& args)
     if(args.Length() < 1)
         return except("You must provide at least one argument.");
     
-    if(not Buffer::HasInstance(args[0]->ToObject()))
+    if(!Buffer::HasInstance(args[0]->ToObject()))
         return except("The first argument must be a buffer.");
     
     if(Buffer::Length(args[0]->ToObject()) != sizeof(t))
@@ -95,7 +95,7 @@ Handle<Value> packBuffer(const Arguments& args)
     if(args.Length() < 1)
         return except("You must provide at least one argument.");
     
-    if(not args[0]->IsNumber ())
+    if(!args[0]->IsNumber ())
         return except("The first argument must be a number.");
 
     ByteOrder order = GetByteOrder(args);
