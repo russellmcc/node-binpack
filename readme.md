@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/russellmcc/node-binpack.png)](http://travis-ci.org/russellmcc/node-binpack)
 # binpack
 
 _Minimalist numeric binary packing utilities for node.js_
