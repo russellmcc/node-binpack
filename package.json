@@ -1,6 +1,6 @@
 {
    "name": "binpack",
-   "version": "0.0.14",
+   "version": "0.0.15",
    "main": "binpack",
    "author": {
        "name" : "Russell McClellan",
@@ -18,7 +18,6 @@
        "url": "http://github.com/russellmcc/node-binpack.git" 
    },
    "dependencies" : {
-       "bindings" : "*"
    },
    "devDependencies" : {
        "vows" : "*",

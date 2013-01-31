@@ -39,11 +39,9 @@ types =
     "Int8" : {onebyte : true, size : 128}
     "Int16" : {size : 32768}
     "Int32" : {}
-    "Int64" : {}
     "UInt8" : {unsigned : true, onebyte : true, size:255}
     "UInt16" : {unsigned : true, size : 65535}
     "UInt32" : {unsigned : true}
-    "UInt64" : {unsigned : true}
 
 # round trip testing makes up the core of the test.
 roundTripTests = (num) ->
