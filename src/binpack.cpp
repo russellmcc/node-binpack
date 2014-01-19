@@ -5,12 +5,8 @@
 using namespace node;
 using namespace v8;
 
-namespace 
+namespace
 {
-Handle<Value> except(const char* msg)
-{
-    return ThrowException(Exception::Error(String::New(msg)));
-}
 
 enum ByteOrder
 {
@@ -24,12 +20,12 @@ t SwapBytes(const t& in)
     t out;
     const char* in_p = reinterpret_cast<const char*>(&in);
     char* out_p = reinterpret_cast<char*>(&out) + sizeof(t) - 1;
-    
+
     for(; out_p >= reinterpret_cast<char*>(&out); --out_p, ++in_p)
     {
         *out_p = *in_p;
     }
-    
+
     return out;
 }
 
@@ -42,12 +38,12 @@ bool IsPlatformLittleEndian()
     return false;
 }
 
-ByteOrder GetByteOrder(const Arguments& args)
+ByteOrder GetByteOrder(const FunctionCallbackInfo<Value>& args)
 {
     // default to native.
     if(!(args.Length() > 1))
         return kNative;
-        
+
     Local<Value> arg = args[1];
     if(arg->IsString())
     {
@@ -58,61 +54,74 @@ ByteOrder GetByteOrder(const Arguments& args)
         if(!std::strncmp(utf8, "little", 10))
             return IsPlatformLittleEndian() ? kNative : kFlip;
     }
-    
+
     return kNative;
 }
 
 template<typename t>
-Handle<Value> unpackBuffer(const Arguments& args)
+void unpackBuffer(const FunctionCallbackInfo<Value>& args)
 {
-    HandleScope scope;
-    
-    if(args.Length() < 1)
-        return except("You must provide at least one argument.");
-    
-    if(!Buffer::HasInstance(args[0]->ToObject()))
-        return except("The first argument must be a buffer.");
-    
-    if(Buffer::Length(args[0]->ToObject()) != sizeof(t))
-        return except("Buffer is the incorrect length.");
+    Isolate* isolate = Isolate::GetCurrent();
+    HandleScope scope(isolate);
+
+    if(args.Length() < 1) {
+        isolate->ThrowException(Exception::TypeError(String::NewFromUtf8(isolate, "You must provide at least one argument.")));
+        return;
+    }
+
+    if(!Buffer::HasInstance(args[0]->ToObject())) {
+        isolate->ThrowException(Exception::TypeError(String::NewFromUtf8(isolate, "The first argument must be a buffer")));
+        return;
+    }
+
+    if(Buffer::Length(args[0]->ToObject()) != sizeof(t)) {
+        isolate->ThrowException(Exception::TypeError(String::NewFromUtf8(isolate, "Buffer is the incorrect length")));
+        return;
+    }
 
     ByteOrder order = GetByteOrder(args);
-    
+
     t nativeType = *reinterpret_cast<t*>(Buffer::Data(args[0]->ToObject()));
-    
+
     if(order == kFlip)
         nativeType = SwapBytes(nativeType);
-    
+
     Local<Number> num = Number::New(nativeType);
-    return scope.Close(num);
+    args.GetReturnValue().Set(num);
 }
 
 template<typename t>
-Handle<Value> packBuffer(const Arguments& args)
+void packBuffer(const FunctionCallbackInfo<Value>& args)
 {
-    HandleScope scope;
+    Isolate* isolate = Isolate::GetCurrent();
+    HandleScope scope(isolate);
 
-    if(args.Length() < 1)
-        return except("You must provide at least one argument.");
-    
-    if(!args[0]->IsNumber ())
-        return except("The first argument must be a number.");
+    if(args.Length() < 1) {
+        isolate->ThrowException(Exception::TypeError(String::NewFromUtf8(isolate, "You must provide at least one argument.")));
+        return;
+    }
+
+    if(!args[0]->IsNumber ()) {
+        isolate->ThrowException(Exception::TypeError(String::NewFromUtf8(isolate, "The first argument must be a number")));
+        return;
+    }
 
     ByteOrder order = GetByteOrder(args);
 
     Local<Number> num = args[0]->ToNumber();
     t nativeType = num->Value();
-    
+
     if(order == kFlip)
         nativeType = SwapBytes(nativeType);
-    
-    Buffer* buff = Buffer::New(reinterpret_cast<char*>(&nativeType), sizeof(nativeType));
-    return scope.Close(buff->handle_);
+
+    Local<Object> buff = Buffer::New(reinterpret_cast<char*>(&nativeType), sizeof(nativeType));
+
+    args.GetReturnValue().Set(buff);
 }
 
 }// private namespace
 
-extern "C" 
+extern "C"
 {
     static void init(Handle<Object> target)
     {
@@ -137,6 +146,6 @@ extern "C"
         NODE_SET_METHOD(target, "packUInt32", packBuffer<uint32_t>);
         NODE_SET_METHOD(target, "packUInt64", packBuffer<uint64_t>);
     }
-    
+
     NODE_MODULE(binpack, init);
 }
