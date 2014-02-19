@@ -1,7 +1,7 @@
 {
    "name": "binpack",
    "version": "0.0.15",
-   "main": "binpack",
+   "main": "index",
    "author": {
        "name" : "Russell McClellan",
        "email": "russell.mcclellan@gmail.com",
@@ -25,9 +25,6 @@
    },
    "directories": {
        "src": "src"
-   },
-   "engines": {
-       "node": ">=0.6.0"
    },
    "scripts": {
        "test" : "vows tests/*"
