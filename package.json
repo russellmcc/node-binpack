@@ -21,7 +21,7 @@
    },
    "devDependencies" : {
        "vows" : "*",
-       "coffee-script" : "*"
+       "coffee-script" : "<1.7.0"
    },
    "scripts": {
        "test" : "vows tests/*"
