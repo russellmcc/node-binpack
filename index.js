@@ -31,7 +31,7 @@ var addBindings = function(binpackTypename, nodeTypename){
         nodeTypename = binpackTypename;
     }
     module.exports['pack' + binpackTypename] = function(num, endian){
-        b = new Buffer(sizeOfType(binpackTypename));
+        var b = new Buffer(sizeOfType(binpackTypename));
         b['write' + nodeTypename + endianConv(endian, binpackTypename)](num, 0, true);
         return b;
     }
